@@ -19,9 +19,9 @@ type SendMessageInput struct {
 	// The auto-generated request id. Should be 0 if the message is sent from MT
 	RequestID string `json:"RequestId,omitempty"`
 	// Set 0 if the message is sent with brand name
-	FeeTypeID FeeType `json:"FeeTypeId,omitempty"`
+	FeeTypeID FeeType `json:"FeeTypeId"`
 	// send message content with or without unicode
-	MsgContentTypeID MsgContentType `json:"MsgContentTypeId,omitempty"`
+	MsgContentTypeID MsgContentType `json:"MsgContentTypeId"`
 }
 
 // SendMessageResponse represents the send message response

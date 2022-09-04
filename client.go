@@ -136,7 +136,7 @@ func (c *httpClient) Do(r *http.Request, v interface{}) (*http.Response, error) 
 	if c.logger != nil {
 		var b bytes.Buffer
 		b.ReadFrom(resp.Body)
-		c.printDebug("response body: ", b.String())
+		c.printDebug(fmt.Sprintf("response body: %s", b.String()))
 		err = json.Unmarshal(b.Bytes(), &v)
 	} else {
 		dec := json.NewDecoder(resp.Body)
@@ -150,7 +150,7 @@ func (c *httpClient) Do(r *http.Request, v interface{}) (*http.Response, error) 
 	return resp, nil
 }
 
-func (c *httpClient) printDebug(args ...interface{}) {
+func (c *httpClient) printDebug(message string, args ...interface{}) {
 	if c.logger != nil {
 		c.logger(args...)
 	}
