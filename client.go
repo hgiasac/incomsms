@@ -44,7 +44,7 @@ type httpClient struct {
 	baseURL    *url.URL
 	credential Credential
 	client     *http.Client
-	logger     func(...interface{})
+	logger     func(string, ...interface{})
 }
 
 func newHTTPClient(userName string, password string) *httpClient {
@@ -76,7 +76,7 @@ func (c *httpClient) SetHTTPClient(client *http.Client) {
 }
 
 // SetLogger set custom debug logger
-func (c *httpClient) SetLogger(logger func(args ...interface{})) {
+func (c *httpClient) SetLogger(logger func(message string, args ...interface{})) {
 	c.logger = logger
 }
 
@@ -152,7 +152,7 @@ func (c *httpClient) Do(r *http.Request, v interface{}) (*http.Response, error) 
 
 func (c *httpClient) printDebug(message string, args ...interface{}) {
 	if c.logger != nil {
-		c.logger(args...)
+		c.logger(message, args...)
 	}
 }
 

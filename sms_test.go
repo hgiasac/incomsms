@@ -14,7 +14,9 @@ func setup(t *testing.T) *Client {
 	if err != nil {
 		t.Fatal(err)
 	}
-	client.logger = log.Println
+	client.logger = func(s string, i ...interface{}) {
+		log.Println(s, i)
+	}
 	return client
 }
 
